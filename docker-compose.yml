@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    stdin_open: true
+    command: bash
+    volumes:
+      - .:/app
+    ports:
+      - "${PORT:-5000}:5000"
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DOCKER_DEV=true
+      - PORT=5000
+    env_file: .env

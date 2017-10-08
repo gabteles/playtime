@@ -21,5 +21,14 @@ module Playtime
     config.generators do |g|
       g.stylesheets     false
     end
+
+    # Webconsole config with docker (enabled in development only)
+    if Rails.env.development? && ENV['DOCKER_DEV'] && config.respond_to?(:web_console)
+      # Finds container's private IP and allowed network
+      private_ip = Socket.ip_address_list.find(&:ipv4_private?).ip_address
+      allowed_network = "#{private_ip}/24"
+      # Add network range to WebConsole whithelist
+      config.web_console.whitelisted_ips.push(allowed_network)
+    end
   end
 end
