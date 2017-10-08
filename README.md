@@ -75,13 +75,16 @@ You need:
   - Rails 5.1
   - Postgres >=9.1
   - A javascript runtime, we recommend node.js
+  - (Optional) [Docker][docker-download] and [docker-compose][compose-download]
 
 You will need Node.js (which comes bundled with NPM) and it is easiest to
 install on Mac, Windows, or Linux [with your favorite package manager][node-pkg]
 or by downloading directly from [nodejs.org][node-direct].
 
-[node-pkg]:    https://nodejs.org/en/download/package-manager/
-[node-direct]: https://nodejs.org/en/download/
+[node-pkg]:         https://nodejs.org/en/download/package-manager/
+[node-direct]:      https://nodejs.org/en/download/
+[docker-downlaod]:  https://www.docker.com/community-edition#/download
+[compose-download]: https://docs.docker.com/compose/install/
 
 You will also need git, ruby, rails, and PostgreSQL.  If you have git and
 postgres in some version or another you're probably set. But:
@@ -97,6 +100,11 @@ postgres in some version or another you're probably set. But:
   - If you are using **Ubuntu Linux**, use this [Rails Apps Guide] to get set
     up with ruby, rails, and node.js and this guide to
     [install PostgreSQL][Postgres Ubuntu].
+
+  - If you prefer using **Docker**, just `docker-compose up -d`! Remember to
+    prepend all Ruby/Rails/Rake commands with `docker-compose exec web ` in
+    order to execute it into the container and not in the host. Also initialize
+    rails server with `-b 0.0.0.0` option.
 
   - Otherwise, Google for instructions for your OS of choice. Let us know if
     you get stuck!
